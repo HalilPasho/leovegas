@@ -1,0 +1,8 @@
+.toggle-wrapper > img {
+  width: 24px;
+}
+
+.movies-favourite-container {
+  margin-right: 50px;
+  cursor: pointer;
+}

@@ -1,0 +1,20 @@
+.movies-watch-later {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #48484812;
+  cursor: pointer;
+}
+
+.movies-toggle-watch > img {
+  padding-right: 10px;
+}
+
+.movies-watch-later:hover {
+  background-color: #48484826;
+}
+
+.movies-toggle-watch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
