@@ -1,14 +1,14 @@
 import React from "react";
 import "../css/Popup.css";
 
-const Popup = (props) => {
+const Popup = ({ handleClose, content }) => {
   setTimeout(() => {
-    props.handleClose();
+    handleClose();
   }, 1000);
 
   return (
-    <div className="popup-box" onClick={props.handleClose}>
-      <div className="box">{props.content}</div>
+    <div className="popup-box" onClick={handleClose}>
+      <div className="box">{content}</div>
     </div>
   );
 };

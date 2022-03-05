@@ -50,7 +50,7 @@ test("Specialities checkbox component is present", () => {
 });
 
 test("Movies are rendered after search is valid", async () => {
-  render(<Movies companies={DataMock} />);
+  render(<Movies movies={DataMock} />);
 
   expect(
     await screen.findByText("Dragon Ball Z: Resurrection 'F'")
