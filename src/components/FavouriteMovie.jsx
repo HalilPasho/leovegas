@@ -3,7 +3,12 @@ import "../css/FavouriteMovie.css";
 import Active from "../images/active-star.png";
 import Inactive from "../images/inactive-star.png";
 
-function FavouriteImage({ active, handleChangeActive }) {
+function FavouriteImage({
+  active,
+  handleChangeActive,
+  addFavouriteMovie,
+  removeFavouriteMovie,
+}) {
   return (
     <div className="movies-favourite-container">
       <div className="toggle-wrapper">
@@ -12,14 +17,20 @@ function FavouriteImage({ active, handleChangeActive }) {
             className="active"
             src={Active}
             alt="yellow star"
-            onClick={() => handleChangeActive()}
+            onClick={() => {
+              removeFavouriteMovie();
+              handleChangeActive();
+            }}
           />
         ) : (
           <img
             className="inactive"
             src={Inactive}
             alt="black and white star"
-            onClick={() => handleChangeActive()}
+            onClick={() => {
+              addFavouriteMovie();
+              handleChangeActive();
+            }}
           />
         )}
       </div>

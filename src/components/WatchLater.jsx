@@ -3,7 +3,12 @@ import "../css/WatchLater.css";
 import WatchLaterIcon from "../images/watch-later.png";
 import Popup from "./Popup";
 
-const WatchLater = ({ watchLater, handlewatchLater }) => {
+const WatchLater = ({
+  watchLater,
+  handlewatchLater,
+  addWatchLaterMovie,
+  removeWatchLaterMovie,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
@@ -13,7 +18,13 @@ const WatchLater = ({ watchLater, handlewatchLater }) => {
   return (
     <div className="movies-watch-later">
       {watchLater ? (
-        <div className="movies-toggle-watch" onClick={() => handlewatchLater()}>
+        <div
+          className="movies-toggle-watch"
+          onClick={() => {
+            handlewatchLater();
+            removeWatchLaterMovie();
+          }}
+        >
           <img src={WatchLaterIcon} alt="watch-later" />
           <div>Saved to watch later</div>
         </div>
@@ -22,6 +33,7 @@ const WatchLater = ({ watchLater, handlewatchLater }) => {
           className="movies-toggle-watch"
           onClick={() => {
             togglePopup();
+            addWatchLaterMovie();
             handlewatchLater();
           }}
         >

@@ -1,6 +1,5 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import "../css/SearchBar.css";
-
 
 const SearchBar = ({ onSearchSubmit, clearResults }) => {
   const [term, setTerm] = useState("");
@@ -25,7 +24,7 @@ const SearchBar = ({ onSearchSubmit, clearResults }) => {
       <input
         className="searchbar-input"
         type="text"
-        placeholder="Search by name. . ."
+        placeholder="Search movie. . ."
         onChange={(e) => setDebouncedValue(e.target.value)}
         value={debouncedValue}
       />

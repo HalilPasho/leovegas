@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import ResetButton from "./components/ReserFilters";
 import Movies from "./components/Movies";
+import WatchLater from "./components/WatchLater";
 
 const DataMock = {
   adult: false,
@@ -56,4 +57,12 @@ test("Movies are rendered after search is valid", async () => {
     await screen.findByText("Dragon Ball Z: Resurrection 'F'")
   ).toBeInTheDocument();
   expect(await screen.findByText(DataMock.title)).toHaveClass("highlight");
+});
+
+test("Watch later component is rendered", async () => {
+  render(<WatchLater />);
+
+  expect(<WatchLater />).toBeDefined();
+  expect(<WatchLater />).toBeTruthy();
+  expect(await screen.findByText("Watch Later")).toBeInTheDocument();
 });
