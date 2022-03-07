@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import { Link } from "react-router-dom";
 import Logo from "./images/logo.png";
+import { requestMovies } from "./API/API";
+
 import MovieDetails from "./components/Movies";
 import SearchBar from "./components/SearchBar";
-import { requestMovies } from "./API/API";
 import ResetFilter from "./components/ReserFilters";
 import ScrollTop from "./components/ScrollTop";
+import EmptyResults from "./components/EmptyResults";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -31,8 +34,11 @@ const App = () => {
       Object.entries(obj).every(([key, value]) => value === el[key])
     );
 
-  const saveToLocalStorage = (items) => {
+  const saveToLocalStorageFav = (items) => {
     localStorage.setItem("movieFavourites", JSON.stringify(items));
+  };
+
+  const saveToLocalStorageWatch = (items) => {
     localStorage.setItem("movieWatchLater", JSON.stringify(items));
   };
 
@@ -40,7 +46,7 @@ const App = () => {
     if (!isDuplicate(favourites, movie)) {
       const newFavouriteList = [...favourites, movie];
       setFavourites(newFavouriteList);
-      saveToLocalStorage(newFavouriteList);
+      saveToLocalStorageFav(newFavouriteList);
     }
   };
 
@@ -48,7 +54,7 @@ const App = () => {
     if (!isDuplicate(watchLater, movie)) {
       const newWatchLaterList = [...watchLater, movie];
       setWatchLater(newWatchLaterList);
-      saveToLocalStorage(newWatchLaterList);
+      saveToLocalStorageWatch(newWatchLaterList);
     }
   };
 
@@ -58,7 +64,7 @@ const App = () => {
     );
 
     setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+    saveToLocalStorageFav(newFavouriteList);
   };
 
   const removeWatchLaterMovie = (movie) => {
@@ -67,7 +73,7 @@ const App = () => {
     );
 
     setWatchLater(newWatchLaterList);
-    saveToLocalStorage(newWatchLaterList);
+    saveToLocalStorageWatch(newWatchLaterList);
   };
 
   const clearResults = () => setMovies([]);
@@ -105,10 +111,16 @@ const App = () => {
       </div>
 
       <SearchBar onSearchSubmit={onSearchSubmit} clearResults={clearResults} />
-      <ResetFilter clearResult={clearResults} />
-      {noResults && <p className="no-results">No results found.</p>}
-      <div className="main-content">{renderedMovies}</div>
 
+      <div className="movie-nav-filter-container">
+        <ResetFilter clearResult={clearResults} />
+        <div className="movies-nav">
+          <Link to="/watch-later">Watch Later</Link>
+          <Link to="/favourites">Favourites</Link>
+        </div>
+      </div>
+      {noResults && <EmptyResults text="No results found." />}
+      <div className="main-content">{renderedMovies}</div>
       <ScrollTop />
     </div>
   );

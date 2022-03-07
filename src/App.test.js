@@ -3,6 +3,9 @@ import App from "./App";
 import ResetButton from "./components/ReserFilters";
 import Movies from "./components/Movies";
 import WatchLater from "./components/WatchLater";
+import { Router } from "react-router-dom";
+import WatchLaterList from "./components/WatchLaterList";
+import { createMemoryHistory } from "history";
 
 const DataMock = {
   adult: false,
@@ -21,12 +24,6 @@ const DataMock = {
   vote_count: 1356,
 };
 
-test("renders title", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/LeoVegas/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
 test("Reset button is present", () => {
   render(
     <ResetButton
@@ -40,8 +37,14 @@ test("Reset button is present", () => {
   expect(resetFilter).toBeTruthy();
 });
 
-test("Specialities checkbox component is present", () => {
-  render(<App />);
+test("Home page is present", () => {
+  const history = createMemoryHistory();
+  render(
+    <Router location={history.location} navigator={history}>
+      <App />
+    </Router>
+  );
+
   let spec = [];
   for (const [key, value] of Object.entries(DataMock)) {
     spec.push(value);
@@ -51,7 +54,12 @@ test("Specialities checkbox component is present", () => {
 });
 
 test("Movies are rendered after search is valid", async () => {
-  render(<Movies movies={DataMock} />);
+  const history = createMemoryHistory();
+  render(
+    <Router location={history.location} navigator={history}>
+      <Movies movies={DataMock} />
+    </Router>
+  );
 
   expect(
     await screen.findByText("Dragon Ball Z: Resurrection 'F'")
@@ -65,4 +73,21 @@ test("Watch later component is rendered", async () => {
   expect(<WatchLater />).toBeDefined();
   expect(<WatchLater />).toBeTruthy();
   expect(await screen.findByText("Watch Later")).toBeInTheDocument();
+});
+
+test("Watch later page is rendered", async () => {
+  const history = createMemoryHistory();
+  const route = "/favourites";
+  history.push(route);
+  render(
+    <Router location={history.location} navigator={history}>
+      <WatchLaterList movies={DataMock} />
+    </Router>
+  );
+
+  expect(<WatchLaterList />).toBeDefined();
+  expect(<WatchLaterList />).toBeTruthy();
+  expect(
+    await screen.findByText("List you have saved to watch !")
+  ).toBeInTheDocument();
 });

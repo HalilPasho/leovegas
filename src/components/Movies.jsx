@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "../css/Movies.css";
+import { useLocation } from "react-router-dom";
 import { getImage } from "../API/ImagePath";
+
 import FavouriteMovie from "./FavouriteMovie";
 import WatchLater from "./WatchLater";
 
 const Movies = (props) => {
   const [active, setActive] = useState(false);
   const [watchLater, setWatchLater] = useState(false);
+  const locationIsWatch = useLocation();
+
+  let locPathWatchLater = locationIsWatch.pathname === "/watch-later";
+  let locPathFavourite = locationIsWatch.pathname === "/favourites";
 
   const handleChangeActive = () => {
     setActive((previousStar) => {
@@ -42,23 +48,31 @@ const Movies = (props) => {
           </div>
         </div>
         <div className="movies-icons">
-          <FavouriteMovie
-            active={active}
-            movie={props.movies}
-            handleChangeActive={handleChangeActive}
-            addFavouriteMovie={() => props.handleFavouritesClick(props.movies)}
-            removeFavouriteMovie={() =>
-              props.removeFavouriteMovie(props.movies)
-            }
-          />
-          <WatchLater
-            watchLater={watchLater}
-            handlewatchLater={handleWatchLater}
-            removeWatchLaterMovie={() =>
-              props.removeWatchLaterMovie(props.movies)
-            }
-            addWatchLaterMovie={() => props.addWatchLaterMovie(props.movies)}
-          />
+          {locPathWatchLater || locPathFavourite ? null : (
+            <FavouriteMovie
+              active={active}
+              movie={props.movies}
+              handleChangeActive={handleChangeActive}
+              addFavouriteMovie={() =>
+                props.handleFavouritesClick(props.movies)
+              }
+              removeFavouriteMovie={() =>
+                props.removeFavouriteMovie(props.movies)
+              }
+            />
+          )}
+          {locPathFavourite ? null : (
+            <WatchLater
+              id={props.movies.id}
+              watchLater={watchLater}
+              locationIsWatch={props.locationIsWatch}
+              handlewatchLater={handleWatchLater}
+              removeWatchLaterMovie={() =>
+                props.removeWatchLaterMovie(props.movies)
+              }
+              addWatchLaterMovie={() => props.addWatchLaterMovie(props.movies)}
+            />
+          )}
         </div>
       </div>
 

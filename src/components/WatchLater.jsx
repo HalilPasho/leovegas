@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/WatchLater.css";
+
 import WatchLaterIcon from "../images/watch-later.png";
 import Popup from "./Popup";
 
@@ -8,6 +9,8 @@ const WatchLater = ({
   handlewatchLater,
   addWatchLaterMovie,
   removeWatchLaterMovie,
+  locationIsWatch,
+  id,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,9 +18,20 @@ const WatchLater = ({
     setIsOpen(!isOpen);
   };
 
+  let islocationIsWatchL = "";
+  if (locationIsWatch && locationIsWatch.pathname === "/watch-later") {
+    islocationIsWatchL = locationIsWatch;
+  }
+
+  const removefromList = () => {
+    return <div>You saved this!</div>;
+  };
+
   return (
     <div className="movies-watch-later">
-      {watchLater ? (
+      {islocationIsWatchL ? (
+        removefromList()
+      ) : watchLater || islocationIsWatchL ? (
         <div
           className="movies-toggle-watch"
           onClick={() => {
@@ -41,6 +55,7 @@ const WatchLater = ({
           <div>Watch Later</div>
         </div>
       )}
+
       {isOpen && (
         <Popup
           content={

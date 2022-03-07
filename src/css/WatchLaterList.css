@@ -1,0 +1,20 @@
+.movies-w-title {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 25px;
+  font-weight: 600;
+  margin: 50px 0;
+}
+.movies-w-title > div > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  .movies-w-title {
+    font-size: 19px;
+  }
+}

@@ -12,6 +12,7 @@
 
 .main-content {
   padding: 0 5%;
+  color: #fff;
 }
 
 .disclaimer-container {
@@ -52,7 +53,7 @@
 }
 
 .msg-icn {
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
   padding: 10px 20px;
   color: #fff;
@@ -104,6 +105,29 @@
   );
 }
 
+.movie-nav-filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movies-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies-nav > a {
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 10px;
+  background-color: cadetblue;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  color: black;
+}
+
 @media only screen and (max-width: 880px) {
   .app {
     width: 90%;
@@ -113,6 +137,13 @@
   }
   .msg-icn {
     display: none;
+  }
+
+  .movies-nav > a {
+    font-size: 14px;
+  }
+  .app {
+    width: 100%;
   }
 }
 

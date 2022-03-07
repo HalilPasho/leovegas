@@ -12,6 +12,10 @@ const ScrollTop = () => {
         setScrollTopButton(false);
       }
     });
+
+    return () => {
+      setScrollTopButton(true);
+    };
   }, []);
 
   // This function will scroll the window to the top
