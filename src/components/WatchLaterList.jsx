@@ -33,7 +33,7 @@ const WatchLaterList = () => {
         <div className="main-element">List you have saved to watch !</div>
       </div>
       {/* <div className="box">List you have saved to watch !</div> */}
-      <div>
+      <div className="movie-w-container">
         {renderedMovies ? (
           renderedMovies
         ) : (

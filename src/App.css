@@ -135,15 +135,13 @@
   .main-content {
     padding: 0;
   }
+
   .msg-icn {
     display: none;
   }
 
   .movies-nav > a {
     font-size: 14px;
-  }
-  .app {
-    width: 100%;
   }
 }
 

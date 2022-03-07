@@ -13,8 +13,17 @@
   margin-right: 20px;
 }
 
+.movie-w-container {
+  width: 60%;
+  margin: auto;
+}
+
 @media only screen and (max-width: 480px) {
   .movies-w-title {
     font-size: 19px;
+  }
+  .movie-w-container {
+    width: 100%;
+    padding: 0 20px;
   }
 }
