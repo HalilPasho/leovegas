@@ -2,7 +2,7 @@
   border-bottom: 1px solid grey;
   padding-top: 2%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-bottom: 20px;
   font-size: 15px;
 }

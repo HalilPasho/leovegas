@@ -46,6 +46,7 @@ test("Home page is present", () => {
   );
 
   let spec = [];
+  // eslint-disable-next-line no-unused-vars
   for (const [key, value] of Object.entries(DataMock)) {
     spec.push(value);
   }
